@@ -65,7 +65,7 @@ class PunkIcons2 extends CustomPainter {
     canvas.drawPath(path0, paint0);
 
     Paint paint1 = Paint()
-      ..color = Color.fromARGB(255, 255, 255, 255)
+      ..color = const Color.fromARGB(255, 255, 255, 255)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 4.4;
 

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MainCard extends CustomPainter {
-  MainCard(this.color);
+  MainCard(this.color, this.insideColor);
   final Color color;
+  final Color insideColor;
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint0 = Paint()
@@ -24,7 +25,7 @@ class MainCard extends CustomPainter {
     canvas.drawPath(path0, paint0);
 
     Paint paint1 = Paint()
-      ..color = const Color.fromARGB(255, 0, 0, 0)
+      ..color = insideColor
       ..style = PaintingStyle.fill
       ..strokeWidth = 1;
 
