@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:dario_lopianov/buttons/appbar_button.dart';
 import 'package:dario_lopianov/paintings/main_card.dart';
 import 'package:dario_lopianov/paintings/punk_icons.dart';
 import 'package:dario_lopianov/paintings/top_appbar.dart';
@@ -26,6 +27,12 @@ class _HomePageState extends State<HomePage> {
   bool hover3 = false;
   bool hover4 = false;
 
+  //4 more buttons for appbar
+  bool appbarButton1 = false;
+  bool appbarButton2 = false;
+  bool appbarButton3 = false;
+  bool appbarButton4 = false;
+
   late RiveAnimationController _controller;
   final player = AudioPlayer();
   final scrollController = ScrollController();
@@ -36,7 +43,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _controller = SimpleAnimation('hands');
-
     scrollController.addListener(() {
       setState(() {
         verticalPixels = scrollController.position.pixels;
@@ -59,27 +65,157 @@ class _HomePageState extends State<HomePage> {
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width + 100, 100),
         child: Stack(
-          children: <Widget>[
-            Container(
-              color: const Color.fromARGB(255, 255, 245, 105),
-              height: 50,
-              width: MediaQuery.of(context).size.width,
-            ),
-            Container(), // Required some widget in between to float AppBar
-            Positioned(
-              // To take AppBar Size only
-              top: 50.0,
-              left: -20.0,
-              right: -30.0,
-              child: AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                title: CustomPaint(
-                  size: Size(container_width * 2 + 100, (100).toDouble()),
-                  foregroundPainter: TopAppbar(),
+          children: [
+            Stack(
+              children: <Widget>[
+                Container(
+                  color: const Color.fromARGB(255, 255, 245, 105),
+                  height: 50,
+                  width: MediaQuery.of(context).size.width,
                 ),
+                Container(), // Required some widget in between to float AppBar
+                Positioned(
+                  // To take AppBar Size only
+                  top: 50.0,
+                  left: -20.0,
+                  right: -30.0,
+                  child: AppBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    title: CustomPaint(
+                      size: Size(container_width * 2 + 100, (100).toDouble()),
+                      foregroundPainter: TopAppbar(),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0),
+              child: Row(
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    onHover: (value) {
+                      setState(
+                        () => appbarButton1 = value,
+                      );
+                    },
+                    child: CustomPaint(
+                        size: Size(screenWidth, screenWidth),
+                        painter: AppBarButton(appbarButton1),
+                        child: Container(
+                          height: 45,
+                          width: screenWidth * .1,
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Flexible(
+                              child: Text(
+                                "Home",
+                                style: TextStyle(
+                                    color: appbarButton1
+                                        ? Colors.white
+                                        : Colors.yellow,
+                                    fontFamily: "Cyberpunk",
+                                    fontSize: 23,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        )),
+                  ),
+                  Spacer(),
+                  InkWell(
+                    onTap: () {},
+                    onHover: (value) {
+                      setState(
+                        () => appbarButton2 = value,
+                      );
+                    },
+                    child: CustomPaint(
+                        size: Size(screenWidth, screenWidth),
+                        painter: AppBarButton(appbarButton2),
+                        child: Container(
+                          height: 45,
+                          width: screenWidth * .1,
+                          alignment: Alignment.center,
+                          child: const Padding(
+                            padding: EdgeInsets.only(bottom: 15),
+                            child: Flexible(
+                              child: Text(
+                                "About",
+                                style: TextStyle(
+                                    color: Colors.yellow,
+                                    fontFamily: "Cyberpunk",
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        )),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    onHover: (value) {
+                      setState(
+                        () => appbarButton3 = value,
+                      );
+                    },
+                    child: CustomPaint(
+                        size: Size(screenWidth, screenWidth),
+                        painter: AppBarButton(appbarButton3),
+                        child: Container(
+                          height: 45,
+                          width: screenWidth * .1,
+                          alignment: Alignment.center,
+                          child: const Padding(
+                            padding: EdgeInsets.only(bottom: 15),
+                            child: Flexible(
+                              child: Text(
+                                "About",
+                                style: TextStyle(
+                                    color: Colors.yellow,
+                                    fontFamily: "Cyberpunk",
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        )),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    onHover: (value) {
+                      setState(
+                        () => appbarButton4 = value,
+                      );
+                    },
+                    child: CustomPaint(
+                        size: Size(screenWidth, screenWidth),
+                        painter: AppBarButton(appbarButton4),
+                        child: Container(
+                          height: 45,
+                          width: screenWidth * .1,
+                          alignment: Alignment.center,
+                          child: const Padding(
+                            padding: EdgeInsets.only(bottom: 15),
+                            child: Flexible(
+                              child: Text(
+                                "Contatct",
+                                style: TextStyle(
+                                    color: Colors.yellow,
+                                    fontFamily: "Cyberpunk",
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        )),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
