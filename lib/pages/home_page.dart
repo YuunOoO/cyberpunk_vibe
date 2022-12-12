@@ -95,11 +95,19 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 children: [
                   InkWell(
-                    onTap: () {},
-                    onHover: (value) {
-                      setState(
-                        () => appbarButton1 = value,
-                      );
+                    onTap: () {
+                      player.play("assets/sounds/error.mp3");
+                    },
+                    onHover: (value) async {
+                      if (value) {
+                        player.play("assets/sounds/error.mp3");
+                      }
+                      for (int i = 0; i < 3; i++) {
+                        setState(() {
+                          appbarButton1 = !appbarButton1;
+                        });
+                        await Future.delayed(const Duration(milliseconds: 60));
+                      }
                     },
                     child: CustomPaint(
                         size: Size(screenWidth, screenWidth),
@@ -127,11 +135,19 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Spacer(),
                   InkWell(
-                    onTap: () {},
-                    onHover: (value) {
-                      setState(
-                        () => appbarButton2 = value,
-                      );
+                    onTap: () {
+                      player.play("assets/sounds/error.mp3");
+                    },
+                    onHover: (value) async {
+                      if (value) {
+                        player.play("assets/sounds/error.mp3");
+                      }
+                      for (int i = 0; i < 3; i++) {
+                        setState(() {
+                          appbarButton2 = !appbarButton2;
+                        });
+                        await Future.delayed(const Duration(milliseconds: 60));
+                      }
                     },
                     child: CustomPaint(
                         size: Size(screenWidth, screenWidth),
@@ -156,11 +172,19 @@ class _HomePageState extends State<HomePage> {
                         )),
                   ),
                   InkWell(
-                    onTap: () {},
-                    onHover: (value) {
-                      setState(
-                        () => appbarButton3 = value,
-                      );
+                    onTap: () {
+                      player.play("assets/sounds/error.mp3");
+                    },
+                    onHover: (value) async {
+                      if (value) {
+                        player.play("assets/sounds/error.mp3");
+                      }
+                      for (int i = 0; i < 3; i++) {
+                        setState(() {
+                          appbarButton3 = !appbarButton3;
+                        });
+                        await Future.delayed(const Duration(milliseconds: 60));
+                      }
                     },
                     child: CustomPaint(
                         size: Size(screenWidth, screenWidth),
@@ -173,7 +197,7 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.only(bottom: 15),
                             child: Flexible(
                               child: Text(
-                                "About",
+                                "Skills",
                                 style: TextStyle(
                                     color: Colors.yellow,
                                     fontFamily: "Cyberpunk",
@@ -185,11 +209,19 @@ class _HomePageState extends State<HomePage> {
                         )),
                   ),
                   InkWell(
-                    onTap: () {},
-                    onHover: (value) {
-                      setState(
-                        () => appbarButton4 = value,
-                      );
+                    onTap: () {
+                      player.play("assets/sounds/error.mp3");
+                    },
+                    onHover: (value) async {
+                      if (value) {
+                        player.play("assets/sounds/error.mp3");
+                      }
+                      for (int i = 0; i < 3; i++) {
+                        setState(() {
+                          appbarButton4 = !appbarButton4;
+                        });
+                        await Future.delayed(const Duration(milliseconds: 60));
+                      }
                     },
                     child: CustomPaint(
                         size: Size(screenWidth, screenWidth),
