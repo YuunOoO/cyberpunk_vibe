@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
     scrollController.addListener(() {
       setState(() {
         verticalPixels = scrollController.position.pixels;
+
         print(verticalPixels);
         if (verticalPixels <= screenHeight * .4) {
           load4Buttons = false;
@@ -91,18 +92,69 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 150,
             ),
-            SizedBox(
-              height: screenHeight * .8,
-              width: screenWidth * .8,
-              child: Center(
-                child: RiveAnimation.asset(
-                  'assets/pixel_art.riv',
-                  animations: const ['head', 'hands'],
-                  controllers: [_controller],
-                  fit: BoxFit.contain,
-                  stateMachines: const ['State Machine 1'],
+            Stack(
+              children: [
+                SizedBox(
+                  height: screenHeight * .8,
+                  child: Center(
+                    child: RiveAnimation.asset(
+                      'assets/pixel_art.riv',
+                      animations: const ['head', 'hands'],
+                      controllers: [_controller],
+                      fit: BoxFit.contain,
+                      stateMachines: const ['State Machine 1'],
+                    ),
+                  ),
                 ),
-              ),
+                Container(
+                  margin: EdgeInsets.only(
+                      top: screenHeight * .05, left: screenWidth * .05),
+                  child: const Text(
+                    "Welcome in ",
+                    style: TextStyle(
+                        shadows: <Shadow>[
+                          Shadow(
+                            offset: Offset(10.0, 10.0),
+                            blurRadius: 5.0,
+                            color: Color.fromARGB(255, 143, 173, 7),
+                          ),
+                          Shadow(
+                            offset: Offset(10.0, 10.0),
+                            blurRadius: 8.0,
+                            color: Color.fromARGB(123, 14, 14, 112),
+                          ),
+                        ],
+                        fontFamily: "Cyberpunk",
+                        fontSize: 100,
+                        color: Colors.yellow),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomRight,
+                  margin: EdgeInsets.only(
+                      top: screenHeight * .55, right: screenWidth * .05),
+                  child: const Text(
+                    "Darius world",
+                    style: TextStyle(
+                        fontFamily: "Cyberpunk",
+                        fontWeight: FontWeight.bold,
+                        shadows: <Shadow>[
+                          Shadow(
+                            offset: Offset(10.0, 10.0),
+                            blurRadius: 3.0,
+                            color: Color.fromARGB(255, 4, 121, 167),
+                          ),
+                          Shadow(
+                            offset: Offset(10.0, 10.0),
+                            blurRadius: 8.0,
+                            color: Color.fromARGB(123, 14, 14, 112),
+                          ),
+                        ],
+                        fontSize: 90,
+                        color: Colors.yellow),
+                  ),
+                ),
+              ],
             ),
             AnimatedPadding(
               onEnd: () => setState(() {
@@ -125,8 +177,9 @@ class _HomePageState extends State<HomePage> {
                               container_width * 2,
                               (container_width * 1.6 * 0.5833333333333334)
                                   .toDouble()),
-                          painter: MainCard(Color.fromARGB(120, 142, 182, 134),
-                              Color.fromARGB(255, 0, 0, 0)),
+                          painter: MainCard(
+                              const Color.fromARGB(174, 241, 217, 4),
+                              const Color.fromARGB(255, 255, 239, 9)),
                         ),
                       ],
                     ),
@@ -144,16 +197,15 @@ class _HomePageState extends State<HomePage> {
                               container_width * 1.8,
                               (container_width * 1.5 * 0.5833333333333334)
                                   .toDouble()),
-                          painter: MainCard(
-                              const Color.fromARGB(207, 74, 114, 66),
-                              const Color.fromARGB(255, 37, 37, 41)),
+                          painter: MainCard(const Color.fromARGB(218, 0, 0, 0),
+                              const Color.fromARGB(220, 37, 37, 41)),
                         ),
                         AnimatedOpacity(
                           duration: const Duration(milliseconds: 400),
                           opacity: load4Buttons ? 1 : 0,
                           child: Container(
                             margin: EdgeInsets.only(
-                                right: screenWidth * .05,
+                                right: load4Buttons ? screenWidth * .05 : 0,
                                 bottom: screenHeight * .05),
                             child: Row(
                               children: [

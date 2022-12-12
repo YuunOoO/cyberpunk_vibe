@@ -26,8 +26,8 @@ class MainCard extends CustomPainter {
 
     Paint paint1 = Paint()
       ..color = insideColor
-      ..style = PaintingStyle.fill
-      ..strokeWidth = 1;
+      ..style = PaintingStyle.fill;
+    // ..strokeWidth = 1;
 
     Path path1 = Path();
     path1.moveTo(size.width * 0.0275944, size.height * 0.1273271);
