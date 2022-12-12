@@ -4,6 +4,7 @@ import 'package:dario_lopianov/paintings/main_card.dart';
 import 'package:dario_lopianov/paintings/punk_icons.dart';
 import 'package:dario_lopianov/paintings/top_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rive/rive.dart';
 
 class HomePage extends StatefulWidget {
@@ -118,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                           alignment: Alignment.center,
                           child: Padding(
                             padding: const EdgeInsets.only(bottom: 10),
-                            child: Flexible(
+                            child: Center(
                               child: Text(
                                 "Home",
                                 style: TextStyle(
@@ -133,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         )),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   InkWell(
                     onTap: () {
                       player.play("assets/sounds/error.mp3");
@@ -158,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                           alignment: Alignment.center,
                           child: const Padding(
                             padding: EdgeInsets.only(bottom: 15),
-                            child: Flexible(
+                            child: Center(
                               child: Text(
                                 "About",
                                 style: TextStyle(
@@ -191,11 +192,11 @@ class _HomePageState extends State<HomePage> {
                         painter: AppBarButton(appbarButton3),
                         child: Container(
                           height: 45,
-                          width: screenWidth * .1,
+                          width: screenWidth * .11,
                           alignment: Alignment.center,
                           child: const Padding(
                             padding: EdgeInsets.only(bottom: 15),
-                            child: Flexible(
+                            child: Center(
                               child: Text(
                                 "Skills",
                                 style: TextStyle(
@@ -214,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     onHover: (value) async {
                       if (value) {
-                        player.play("assets/sounds/error.mp3");
+                        //    player.play("assets/sounds/error.mp3");
                       }
                       for (int i = 0; i < 3; i++) {
                         setState(() {
@@ -228,17 +229,17 @@ class _HomePageState extends State<HomePage> {
                         painter: AppBarButton(appbarButton4),
                         child: Container(
                           height: 45,
-                          width: screenWidth * .1,
+                          width: screenWidth * .13,
                           alignment: Alignment.center,
                           child: const Padding(
                             padding: EdgeInsets.only(bottom: 15),
-                            child: Flexible(
+                            child: Center(
                               child: Text(
                                 "Contatct",
                                 style: TextStyle(
                                     color: Colors.yellow,
                                     fontFamily: "Cyberpunk",
-                                    fontSize: 25,
+                                    fontSize: 23,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -400,9 +401,12 @@ class _HomePageState extends State<HomePage> {
                                         painter: PunkIcons(hover1),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Icon(Icons.access_alarm,
-                                              size: screenWidth / 20,
-                                              color: Colors.yellow),
+                                          child: IconButton(
+                                              iconSize: screenWidth / 20,
+                                              icon: const FaIcon(
+                                                  FontAwesomeIcons.facebookF),
+                                              color: Colors.yellow,
+                                              onPressed: () {}),
                                         ),
                                       ),
                                     ),
@@ -429,9 +433,12 @@ class _HomePageState extends State<HomePage> {
                                         painter: PunkIcons(hover2),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Icon(Icons.abc_outlined,
-                                              size: screenWidth / 20,
-                                              color: Colors.yellow),
+                                          child: IconButton(
+                                              iconSize: screenWidth / 20,
+                                              icon: const FaIcon(
+                                                  FontAwesomeIcons.instagram),
+                                              color: Colors.yellow,
+                                              onPressed: () {}),
                                         ),
                                       ),
                                     )
@@ -462,9 +469,12 @@ class _HomePageState extends State<HomePage> {
                                         painter: PunkIcons(hover3),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Icon(Icons.open_in_new,
-                                              size: screenWidth / 20,
-                                              color: Colors.yellow),
+                                          child: IconButton(
+                                              iconSize: screenWidth / 20,
+                                              icon: const FaIcon(
+                                                  FontAwesomeIcons.linkedin),
+                                              color: Colors.yellow,
+                                              onPressed: () {}),
                                         ),
                                       ),
                                     ),
@@ -491,9 +501,12 @@ class _HomePageState extends State<HomePage> {
                                         painter: PunkIcons(hover4),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Icon(Icons.lock,
-                                              size: screenWidth / 20,
-                                              color: Colors.yellow),
+                                          child: IconButton(
+                                              iconSize: screenWidth / 20,
+                                              icon: const FaIcon(
+                                                  FontAwesomeIcons.snapchat),
+                                              color: Colors.yellow,
+                                              onPressed: () {}),
                                         ),
                                       ),
                                     ),

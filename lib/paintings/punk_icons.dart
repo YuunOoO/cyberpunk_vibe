@@ -22,7 +22,7 @@ class PunkIcons extends CustomPainter {
     canvas.drawPath(path0, paint0);
 
     Paint paint1 = Paint()
-      ..color = const Color.fromARGB(181, 214, 226, 53)
+      ..color = const Color.fromARGB(153, 214, 226, 53)
       ..style = PaintingStyle.fill;
 
     Path path1 = Path();
