@@ -1,11 +1,14 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:dario_lopianov/buttons/appbar_button.dart';
+import 'package:dario_lopianov/paintings/card_lines.dart';
 import 'package:dario_lopianov/paintings/main_card.dart';
 import 'package:dario_lopianov/paintings/punk_icons.dart';
 import 'package:dario_lopianov/paintings/top_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:glitcheffect/glitcheffect.dart';
 import 'package:rive/rive.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,7 +18,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
-
+  GlobalKey keyAbout = GlobalKey(); // declare a global key
+  late Uri url;
   //responsive ui
   late double container_width;
   late double screenWidth;
@@ -48,7 +52,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         verticalPixels = scrollController.position.pixels;
 
-        print(verticalPixels);
+        // print(verticalPixels);
         if (verticalPixels <= screenHeight * .4) {
           load4Buttons = false;
         }
@@ -138,6 +142,13 @@ class _HomePageState extends State<HomePage> {
                   InkWell(
                     onTap: () {
                       player.play("assets/sounds/error.mp3");
+                      RenderBox box = keyAbout.currentContext!
+                          .findRenderObject() as RenderBox;
+                      Offset position = box.localToGlobal(Offset.zero);
+                      double y = position.dy;
+                      scrollController.animateTo(y + verticalPixels,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeIn);
                     },
                     onHover: (value) async {
                       if (value) {
@@ -276,51 +287,58 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Container(
+                  width: screenWidth * .5,
                   margin: EdgeInsets.only(
                       top: screenHeight * .05, left: screenWidth * .05),
                   child: const Text(
                     "Welcome in ",
+                    maxLines: 1,
                     style: TextStyle(
-                        shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(10.0, 10.0),
-                            blurRadius: 5.0,
-                            color: Color.fromARGB(255, 143, 173, 7),
-                          ),
-                          Shadow(
-                            offset: Offset(10.0, 10.0),
-                            blurRadius: 8.0,
-                            color: Color.fromARGB(123, 14, 14, 112),
-                          ),
-                        ],
-                        fontFamily: "Cyberpunk",
-                        fontSize: 100,
-                        color: Colors.yellow),
+                      shadows: <Shadow>[
+                        Shadow(
+                          offset: Offset(10.0, 10.0),
+                          blurRadius: 5.0,
+                          color: Color.fromARGB(255, 143, 173, 7),
+                        ),
+                        Shadow(
+                          offset: Offset(10.0, 10.0),
+                          blurRadius: 8.0,
+                          color: Color.fromARGB(123, 14, 14, 112),
+                        ),
+                      ],
+                      fontFamily: "Cyberpunk",
+                      fontSize: 100,
+                      color: Colors.yellow,
+                    ),
                   ),
                 ),
                 Container(
                   alignment: Alignment.bottomRight,
                   margin: EdgeInsets.only(
                       top: screenHeight * .55, right: screenWidth * .05),
-                  child: const Text(
-                    "Darius world",
-                    style: TextStyle(
-                        fontFamily: "Cyberpunk",
-                        fontWeight: FontWeight.bold,
-                        shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(10.0, 10.0),
-                            blurRadius: 3.0,
-                            color: Color.fromARGB(255, 4, 121, 167),
-                          ),
-                          Shadow(
-                            offset: Offset(10.0, 10.0),
-                            blurRadius: 8.0,
-                            color: Color.fromARGB(123, 14, 14, 112),
-                          ),
-                        ],
-                        fontSize: 90,
-                        color: Colors.yellow),
+                  child: const GlitchEffect(
+                    colors: [Colors.yellow, Colors.blue, Colors.white],
+                    duration: Duration(milliseconds: 400),
+                    child: Text(
+                      "Darius world",
+                      style: TextStyle(
+                          fontFamily: "Cyberpunk",
+                          fontWeight: FontWeight.bold,
+                          shadows: <Shadow>[
+                            Shadow(
+                              offset: Offset(10.0, 10.0),
+                              blurRadius: 3.0,
+                              color: Color.fromARGB(255, 4, 121, 167),
+                            ),
+                            Shadow(
+                              offset: Offset(10.0, 10.0),
+                              blurRadius: 8.0,
+                              color: Color.fromARGB(123, 14, 14, 112),
+                            ),
+                          ],
+                          fontSize: 90,
+                          color: Colors.yellow),
+                    ),
                   ),
                 ),
               ],
@@ -333,193 +351,237 @@ class _HomePageState extends State<HomePage> {
               duration: const Duration(milliseconds: 500),
               padding: EdgeInsets.only(
                   left: verticalPixels >= screenHeight * .3 ? 0 : screenWidth),
-              child: Stack(
-                alignment: AlignmentDirectional.bottomEnd,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 60),
-                    // color: Colors.black,
-                    child: Column(
-                      children: [
-                        CustomPaint(
-                          size: Size(
-                              container_width * 2,
-                              (container_width * 1.6 * 0.5833333333333334)
-                                  .toDouble()),
-                          painter: MainCard(
-                              const Color.fromARGB(174, 241, 217, 4),
-                              const Color.fromARGB(255, 255, 239, 9)),
-                        ),
-                      ],
+              child: Opacity(
+                opacity: 0.85,
+                child: Stack(
+                  alignment: AlignmentDirectional.bottomEnd,
+                  children: [
+                    Container(
+                      key: keyAbout,
+                      margin: const EdgeInsets.only(top: 60),
+                      // color: Colors.black,
+                      child: Column(
+                        children: [
+                          CustomPaint(
+                            size: Size(
+                                container_width * 2,
+                                (container_width * 1.6 * 0.5833333333333334)
+                                    .toDouble()),
+                            painter: MainCard(
+                                const Color.fromARGB(174, 241, 217, 4),
+                                const Color.fromARGB(255, 255, 239, 9)),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        top: 50,
-                        bottom: screenHeight * .007,
-                        right: screenWidth * .007 - 1),
-                    child: Stack(
-                      alignment: AlignmentDirectional.bottomEnd,
-                      children: [
-                        CustomPaint(
-                          size: Size(
-                              container_width * 1.8,
-                              (container_width * 1.5 * 0.5833333333333334)
-                                  .toDouble()),
-                          painter: MainCard(const Color.fromARGB(218, 0, 0, 0),
-                              const Color.fromARGB(220, 37, 37, 41)),
-                        ),
-                        AnimatedOpacity(
-                          duration: const Duration(milliseconds: 400),
-                          opacity: load4Buttons ? 1 : 0,
-                          child: Container(
-                            margin: EdgeInsets.only(
-                                right: load4Buttons ? screenWidth * .05 : 0,
-                                bottom: screenHeight * .05),
-                            child: Row(
-                              children: [
-                                const Spacer(),
-                                Column(
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        await player
-                                            .play('assets/sounds/click.mp3');
-                                      },
-                                      onHover: (value) async {
-                                        if (value) {
+                    Container(
+                      margin: EdgeInsets.only(
+                          top: 50,
+                          bottom: screenHeight * .007,
+                          right: screenWidth * .007 - 1),
+                      child: Stack(
+                        alignment: AlignmentDirectional.bottomEnd,
+                        children: [
+                          CustomPaint(
+                            size: Size(
+                                container_width * 1.8,
+                                (container_width * 1.5 * 0.5833333333333334)
+                                    .toDouble()),
+                            painter: MainCard(
+                                const Color.fromARGB(218, 0, 0, 0),
+                                const Color.fromARGB(220, 37, 37, 41)),
+                          ),
+                          CustomPaint(
+                            size: Size(
+                                container_width * 1.8,
+                                (container_width * 1.5 * 0.5833333333333334)
+                                    .toDouble()),
+                            painter: MainCard(
+                                const Color.fromARGB(218, 0, 0, 0),
+                                const Color.fromARGB(220, 37, 37, 41)),
+                          ),
+                          CustomPaint(
+                              size: Size(
+                                  container_width * 2,
+                                  (container_width * 1.6 * 0.5833333333333334)
+                                      .toDouble()),
+                              painter: CardLines()),
+                          AnimatedOpacity(
+                            duration: const Duration(milliseconds: 400),
+                            opacity: load4Buttons ? 1 : 0,
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                  right: load4Buttons ? screenWidth * .05 : 0,
+                                  bottom: screenHeight * .05),
+                              child: Row(
+                                children: [
+                                  const Spacer(),
+                                  Column(
+                                    children: [
+                                      InkWell(
+                                        onTap: () async {
                                           await player
                                               .play('assets/sounds/click.mp3');
-                                        }
-                                        setState(() {
-                                          hover1 = value;
-                                        });
-                                      },
-                                      child: CustomPaint(
-                                        size: Size(
-                                            screenWidth / 10, screenWidth / 10),
-                                        painter: PunkIcons(hover1),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: IconButton(
-                                              iconSize: screenWidth / 20,
-                                              icon: const FaIcon(
-                                                  FontAwesomeIcons.facebookF),
-                                              color: Colors.yellow,
-                                              onPressed: () {}),
+                                        },
+                                        onHover: (value) async {
+                                          if (value) {
+                                            await player.play(
+                                                'assets/sounds/click.mp3');
+                                          }
+                                          setState(() {
+                                            hover1 = value;
+                                          });
+                                        },
+                                        child: CustomPaint(
+                                          size: Size(screenWidth / 10,
+                                              screenWidth / 10),
+                                          painter: PunkIcons(hover1),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: IconButton(
+                                                iconSize: screenWidth / 20,
+                                                icon: const FaIcon(
+                                                    FontAwesomeIcons.facebookF),
+                                                color: Colors.yellow,
+                                                onPressed: () async {
+                                                  url = Uri.parse(
+                                                      'https://www.facebook.com/profile.php?id=100004872524390');
+                                                  if (await canLaunchUrl(url)) {
+                                                    await launchUrl(url);
+                                                  }
+                                                }),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: screenWidth * .02,
-                                    ),
-                                    InkWell(
-                                      onTap: () async {
-                                        await player
-                                            .play('assets/sounds/click.mp3');
-                                      },
-                                      onHover: (value) async {
-                                        if (value) {
+                                      SizedBox(
+                                        height: screenWidth * .02,
+                                      ),
+                                      InkWell(
+                                        onTap: () async {
                                           await player
                                               .play('assets/sounds/click.mp3');
-                                        }
-                                        setState(() {
-                                          hover2 = value;
-                                        });
-                                      },
-                                      child: CustomPaint(
-                                        size: Size(
-                                            screenWidth / 10, screenWidth / 10),
-                                        painter: PunkIcons(hover2),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: IconButton(
-                                              iconSize: screenWidth / 20,
-                                              icon: const FaIcon(
-                                                  FontAwesomeIcons.instagram),
-                                              color: Colors.yellow,
-                                              onPressed: () {}),
+                                        },
+                                        onHover: (value) async {
+                                          if (value) {
+                                            await player.play(
+                                                'assets/sounds/click.mp3');
+                                          }
+                                          setState(() {
+                                            hover2 = value;
+                                          });
+                                        },
+                                        child: CustomPaint(
+                                          size: Size(screenWidth / 10,
+                                              screenWidth / 10),
+                                          painter: PunkIcons(hover2),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: IconButton(
+                                                iconSize: screenWidth / 20,
+                                                icon: const FaIcon(
+                                                    FontAwesomeIcons.instagram),
+                                                color: Colors.yellow,
+                                                onPressed: () async {
+                                                  url = Uri.parse(
+                                                      'https://www.instagram.com/dario.lopianov/');
+                                                  if (await canLaunchUrl(url)) {
+                                                    await launchUrl(url);
+                                                  }
+                                                }),
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: screenWidth * .02,
-                                ),
-                                Column(
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        await player
-                                            .play('assets/sounds/click.mp3');
-                                      },
-                                      onHover: (value) async {
-                                        if (value) {
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: screenWidth * .02,
+                                  ),
+                                  Column(
+                                    children: [
+                                      InkWell(
+                                        onTap: () async {
                                           await player
                                               .play('assets/sounds/click.mp3');
-                                        }
-                                        setState(() {
-                                          hover3 = value;
-                                        });
-                                      },
-                                      child: CustomPaint(
-                                        size: Size(
-                                            screenWidth / 10, screenWidth / 10),
-                                        painter: PunkIcons(hover3),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: IconButton(
-                                              iconSize: screenWidth / 20,
-                                              icon: const FaIcon(
-                                                  FontAwesomeIcons.linkedin),
-                                              color: Colors.yellow,
-                                              onPressed: () {}),
+                                        },
+                                        onHover: (value) async {
+                                          if (value) {
+                                            await player.play(
+                                                'assets/sounds/click.mp3');
+                                          }
+                                          setState(() {
+                                            hover3 = value;
+                                          });
+                                        },
+                                        child: CustomPaint(
+                                          size: Size(screenWidth / 10,
+                                              screenWidth / 10),
+                                          painter: PunkIcons(hover3),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: IconButton(
+                                                iconSize: screenWidth / 20,
+                                                icon: const FaIcon(
+                                                    FontAwesomeIcons.linkedin),
+                                                color: Colors.yellow,
+                                                onPressed: () async {
+                                                  url = Uri.parse(
+                                                      'https://www.linkedin.com/in/dario-lopianov-8746a3215/');
+                                                  if (await canLaunchUrl(url)) {
+                                                    await launchUrl(url);
+                                                  }
+                                                }),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: screenWidth * .02,
-                                    ),
-                                    InkWell(
-                                      onTap: () async {
-                                        await player
-                                            .play('assets/sounds/click.mp3');
-                                      },
-                                      onHover: (value) async {
-                                        if (value) {
+                                      SizedBox(
+                                        height: screenWidth * .02,
+                                      ),
+                                      InkWell(
+                                        onTap: () async {
                                           await player
                                               .play('assets/sounds/click.mp3');
-                                        }
-                                        setState(() {
-                                          hover4 = value;
-                                        });
-                                      },
-                                      child: CustomPaint(
-                                        size: Size(
-                                            screenWidth / 10, screenWidth / 10),
-                                        painter: PunkIcons(hover4),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: IconButton(
-                                              iconSize: screenWidth / 20,
-                                              icon: const FaIcon(
-                                                  FontAwesomeIcons.snapchat),
-                                              color: Colors.yellow,
-                                              onPressed: () {}),
+                                        },
+                                        onHover: (value) async {
+                                          if (value) {
+                                            await player.play(
+                                                'assets/sounds/click.mp3');
+                                          }
+                                          setState(() {
+                                            hover4 = value;
+                                          });
+                                        },
+                                        child: CustomPaint(
+                                          size: Size(screenWidth / 10,
+                                              screenWidth / 10),
+                                          painter: PunkIcons(hover4),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: IconButton(
+                                                iconSize: screenWidth / 20,
+                                                icon: const FaIcon(
+                                                    FontAwesomeIcons.github),
+                                                color: Colors.yellow,
+                                                onPressed: () async {
+                                                  url = Uri.parse(
+                                                      'https://github.com/YuunOoO');
+                                                  if (await canLaunchUrl(url)) {
+                                                    await launchUrl(url);
+                                                  }
+                                                }),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        )
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Container(
