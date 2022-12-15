@@ -41,6 +41,7 @@ dependencies:
   font_awesome_flutter: ^10.3.0
   glitcheffect: ^1.1.1
   url_launcher: ^6.1.7
+  fancy_cursor: ^0.1.2
 
 dev_dependencies:
   flutter_test:

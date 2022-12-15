@@ -100,6 +100,7 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 children: [
                   InkWell(
+                    mouseCursor: SystemMouseCursors.none,
                     onTap: () {
                       player.play("assets/sounds/error.mp3");
                     },
@@ -140,6 +141,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const Spacer(),
                   InkWell(
+                    mouseCursor: SystemMouseCursors.none,
                     onTap: () {
                       player.play("assets/sounds/error.mp3");
                       RenderBox box = keyAbout.currentContext!
@@ -184,6 +186,7 @@ class _HomePageState extends State<HomePage> {
                         )),
                   ),
                   InkWell(
+                    mouseCursor: SystemMouseCursors.none,
                     onTap: () {
                       player.play("assets/sounds/error.mp3");
                     },
@@ -221,6 +224,7 @@ class _HomePageState extends State<HomePage> {
                         )),
                   ),
                   InkWell(
+                    mouseCursor: SystemMouseCursors.none,
                     onTap: () {
                       player.play("assets/sounds/error.mp3");
                     },
@@ -419,6 +423,7 @@ class _HomePageState extends State<HomePage> {
                                   Column(
                                     children: [
                                       InkWell(
+                                        mouseCursor: SystemMouseCursors.none,
                                         onTap: () async {
                                           await player
                                               .play('assets/sounds/click.mp3');
@@ -439,6 +444,8 @@ class _HomePageState extends State<HomePage> {
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: IconButton(
+                                                mouseCursor:
+                                                    SystemMouseCursors.none,
                                                 iconSize: screenWidth / 20,
                                                 icon: const FaIcon(
                                                     FontAwesomeIcons.facebookF),
@@ -457,6 +464,7 @@ class _HomePageState extends State<HomePage> {
                                         height: screenWidth * .02,
                                       ),
                                       InkWell(
+                                        mouseCursor: SystemMouseCursors.none,
                                         onTap: () async {
                                           await player
                                               .play('assets/sounds/click.mp3');
@@ -477,6 +485,8 @@ class _HomePageState extends State<HomePage> {
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: IconButton(
+                                                mouseCursor:
+                                                    SystemMouseCursors.none,
                                                 iconSize: screenWidth / 20,
                                                 icon: const FaIcon(
                                                     FontAwesomeIcons.instagram),
@@ -499,6 +509,7 @@ class _HomePageState extends State<HomePage> {
                                   Column(
                                     children: [
                                       InkWell(
+                                        mouseCursor: SystemMouseCursors.none,
                                         onTap: () async {
                                           await player
                                               .play('assets/sounds/click.mp3');
@@ -519,6 +530,8 @@ class _HomePageState extends State<HomePage> {
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: IconButton(
+                                                mouseCursor:
+                                                    SystemMouseCursors.none,
                                                 iconSize: screenWidth / 20,
                                                 icon: const FaIcon(
                                                     FontAwesomeIcons.linkedin),
@@ -537,6 +550,7 @@ class _HomePageState extends State<HomePage> {
                                         height: screenWidth * .02,
                                       ),
                                       InkWell(
+                                        mouseCursor: SystemMouseCursors.none,
                                         onTap: () async {
                                           await player
                                               .play('assets/sounds/click.mp3');
@@ -557,6 +571,8 @@ class _HomePageState extends State<HomePage> {
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: IconButton(
+                                                mouseCursor:
+                                                    SystemMouseCursors.none,
                                                 iconSize: screenWidth / 20,
                                                 icon: const FaIcon(
                                                     FontAwesomeIcons.github),
