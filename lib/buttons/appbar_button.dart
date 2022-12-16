@@ -12,7 +12,7 @@ class AppBarButton extends CustomPainter {
       ..style = PaintingStyle.fill
       ..strokeWidth = 10;
     if (hover) {
-      paint0..color = const Color.fromARGB(201, 230, 12, 12);
+      paint0.color = const Color.fromARGB(201, 230, 12, 12);
     }
 
     Path path0 = Path();

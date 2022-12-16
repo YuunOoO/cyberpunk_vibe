@@ -42,6 +42,7 @@ dependencies:
   glitcheffect: ^1.1.1
   url_launcher: ^6.1.7
   fancy_cursor: ^0.1.2
+  mailto: ^2.0.0
 
 dev_dependencies:
   flutter_test:

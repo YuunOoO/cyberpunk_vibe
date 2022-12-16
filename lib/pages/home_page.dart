@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:dario_lopianov/bars/footer.dart';
 import 'package:dario_lopianov/buttons/appbar_button.dart';
 import 'package:dario_lopianov/paintings/card_lines.dart';
 import 'package:dario_lopianov/paintings/main_card.dart';
@@ -52,7 +53,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         verticalPixels = scrollController.position.pixels;
 
-        // print(verticalPixels);
+        print(verticalPixels);
         if (verticalPixels <= screenHeight * .4) {
           load4Buttons = false;
         }
@@ -103,6 +104,9 @@ class _HomePageState extends State<HomePage> {
                     mouseCursor: SystemMouseCursors.none,
                     onTap: () {
                       player.play("assets/sounds/error.mp3");
+                      scrollController.animateTo(screenHeight * .1,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeIn);
                     },
                     onHover: (value) async {
                       if (value) {
@@ -227,6 +231,10 @@ class _HomePageState extends State<HomePage> {
                     mouseCursor: SystemMouseCursors.none,
                     onTap: () {
                       player.play("assets/sounds/error.mp3");
+                      scrollController.animateTo(
+                          scrollController.position.maxScrollExtent,
+                          duration: const Duration(milliseconds: 800),
+                          curve: Curves.easeIn);
                     },
                     onHover: (value) async {
                       if (value) {
@@ -634,9 +642,27 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
+            SizedBox(
+              height: screenHeight * .2,
+            ),
+            Opacity(
+              opacity: 0.8,
+              child: Image.asset(
+                "AiGlitch.jpg",
+                color: const Color.fromARGB(255, 228, 222, 222),
+                colorBlendMode: BlendMode.modulate,
+                scale: 0.4,
+              ),
+            ),
             Container(
               height: 1000,
-            )
+            ),
+            //TODO
+            Footer(
+              width: screenWidth,
+              height: screenHeight * .4,
+              animate: verticalPixels >= 5000 ? false : true,
+            ),
           ],
         ),
       ),

@@ -4,12 +4,12 @@ class CardLines extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint0 = Paint()
-      ..color = Color.fromARGB(136, 255, 238, 1)
+      ..color = const Color.fromARGB(136, 255, 238, 1)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 7.13;
 
     Paint paintCircle = Paint()
-      ..color = Color.fromARGB(237, 255, 238, 1)
+      ..color = const Color.fromARGB(237, 255, 238, 1)
       ..style = PaintingStyle.fill
       ..strokeWidth = 7.13;
 
@@ -22,12 +22,12 @@ class CardLines extends CustomPainter {
     path0.lineTo(size.width * 0.7973611, size.height * 0.4494840);
 
     Paint paintCircle1 = Paint()
-      ..color = Color.fromARGB(255, 141, 9, 9)
+      ..color = const Color.fromARGB(255, 141, 9, 9)
       ..style = PaintingStyle.fill
       ..strokeWidth = 7.13;
 
     Paint paint1 = Paint()
-      ..color = Color.fromARGB(214, 160, 14, 14)
+      ..color = const Color.fromARGB(214, 160, 14, 14)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 7.13;
 
