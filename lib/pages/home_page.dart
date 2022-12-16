@@ -600,6 +600,40 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            SizedBox(
+              height: screenHeight * .2,
+            ),
+            Stack(
+              children: [
+                Opacity(
+                  opacity: 0.8,
+                  child: Image.asset(
+                    "mainGlitch.gif",
+                    color: Colors.white,
+                    colorBlendMode: BlendMode.modulate,
+                    scale: 0.4,
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  margin: EdgeInsets.only(
+                      top: screenHeight * .3, right: screenWidth * .1),
+                  child: const GlitchEffect(
+                      duration: Duration(seconds: 1, milliseconds: 600),
+                      colors: [Colors.yellow, Colors.blue, Colors.white],
+                      child: Opacity(
+                        opacity: 0.8,
+                        child: Text(
+                          "Error",
+                          style: TextStyle(
+                              fontFamily: "Cyberpunk",
+                              fontSize: 120,
+                              color: Colors.white),
+                        ),
+                      )),
+                ),
+              ],
+            ),
             Container(
               height: 1000,
             )
