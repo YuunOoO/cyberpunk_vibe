@@ -85,7 +85,7 @@ class _FooterState extends State<Footer> {
           Row(
             children: [
               Expanded(
-                flex: 3,
+                flex: 4,
                 child: Container(
                   padding: EdgeInsets.only(left: widget.width * .02),
                   child: Row(children: [
@@ -103,6 +103,19 @@ class _FooterState extends State<Footer> {
                           fontSize: 24,
                           color: Color.fromARGB(157, 0, 0, 0),
                           fontWeight: FontWeight.w700),
+                    ),
+                    const Spacer(),
+                    SizedBox(
+                      width: widget.width * .26,
+                      child: const Text(
+                        "Do you want to cooperate with me?",
+                        style: TextStyle(
+                          color: Colors.yellow,
+                          fontFamily: "Cyberpunk",
+                          fontWeight: FontWeight.w700,
+                          fontSize: 40,
+                        ),
+                      ),
                     ),
                   ]),
                 ),

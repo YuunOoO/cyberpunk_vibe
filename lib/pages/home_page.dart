@@ -9,6 +9,7 @@ import 'package:dario_lopianov/paintings/main_card.dart';
 import 'package:dario_lopianov/paintings/punk_icons.dart';
 import 'package:dario_lopianov/paintings/top_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:glitcheffect/glitcheffect.dart';
 import 'package:rive/rive.dart';
@@ -58,6 +59,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     scrollController = ScrollController();
     _controller = SimpleAnimation('hands');
+
+    //initialization();
     scrollController.addListener(() {
       setState(() {
         verticalPixels = scrollController.position.pixels;
@@ -705,6 +708,10 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
+                      Container(
+                        key: keySkill3,
+                        height: screenHeight,
+                      ),
                     ],
                   ),
                   Container(
@@ -719,9 +726,7 @@ class _HomePageState extends State<HomePage> {
                           verticalPixels)),
                 ],
               ),
-              Container(
-                height: 1000,
-              ),
+
               //TODO
               Footer(
                 width: screenWidth,

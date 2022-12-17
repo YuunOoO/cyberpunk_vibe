@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
 
 Widget milestones(double screenHeight, ScrollController scrollController,
-    GlobalKey skills, GlobalKey skills1, GlobalKey skills2, double y) {
+    GlobalKey skills, GlobalKey skills2, GlobalKey skills3, double y) {
   Arrows arrows = Arrows(scrollController, y);
 
   return Timeline.tileBuilder(
@@ -35,7 +35,7 @@ Widget milestones(double screenHeight, ScrollController scrollController,
       ),
       oppositeContentsBuilder: (context, index) {
         if (index == 0) {
-          return arrows.arrowDown(skills1);
+          return arrows.arrowDown(skills2);
         } else if (index == 1) {
           //TODO
           return Padding(
@@ -45,12 +45,12 @@ Widget milestones(double screenHeight, ScrollController scrollController,
               physics: NeverScrollableScrollPhysics(),
               children: [
                 arrows.arrowUp(skills),
-                arrows.arrowDown(skills1),
+                arrows.arrowDown(skills3),
               ],
             ),
           );
         } else {
-          return arrows.arrowUp(skills);
+          return arrows.arrowUp(skills2);
         }
       },
       indicatorBuilder: (_, index) {
