@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:dario_lopianov/bars/footer.dart';
 import 'package:dario_lopianov/buttons/appbar_button.dart';
+import 'package:dario_lopianov/custom_widgets/milestones/timeline.dart';
 import 'package:dario_lopianov/paintings/card_lines.dart';
 import 'package:dario_lopianov/paintings/main_card.dart';
 import 'package:dario_lopianov/paintings/punk_icons.dart';
@@ -21,6 +24,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   GlobalKey keyAbout = GlobalKey(); // declare a global key
+  GlobalKey keySkills = GlobalKey();
+  GlobalKey keySkill2 = GlobalKey();
+  GlobalKey keySkill3 = GlobalKey();
+
   late Uri url;
   //responsive ui
   late double container_width;
@@ -55,7 +62,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         verticalPixels = scrollController.position.pixels;
 
-        print(verticalPixels);
+        print('$verticalPixels xd');
         if (verticalPixels <= screenHeight * .4) {
           load4Buttons = false;
         }
@@ -195,6 +202,13 @@ class _HomePageState extends State<HomePage> {
                     mouseCursor: SystemMouseCursors.none,
                     onTap: () {
                       player.play("assets/sounds/error.mp3");
+                      RenderBox box = keySkills.currentContext!
+                          .findRenderObject() as RenderBox;
+                      Offset position = box.localToGlobal(Offset.zero);
+                      double y = position.dy;
+                      scrollController.animateTo(y + verticalPixels - 20,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeIn);
                     },
                     onHover: (value) async {
                       if (value) {
@@ -277,6 +291,8 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {}, child: Icon(Icons.arrow_upward)),
       key: scaffoldKey,
       backgroundColor: Colors.black,
       body: WebSmoothScroll(
@@ -631,46 +647,77 @@ class _HomePageState extends State<HomePage> {
               ),
               Stack(
                 children: [
-                  Opacity(
-                    opacity: 0.8,
-                    child: Image.asset(
-                      "mainGlitch.gif",
-                      color: Colors.white,
-                      colorBlendMode: BlendMode.modulate,
-                      scale: 0.4,
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.centerRight,
-                    margin: EdgeInsets.only(
-                        top: screenHeight * .3, right: screenWidth * .1),
-                    child: const GlitchEffect(
-                        duration: Duration(seconds: 1, milliseconds: 600),
-                        colors: [Colors.yellow, Colors.blue, Colors.white],
+                  Column(
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                            key: keySkills,
+                            margin: EdgeInsets.only(left: screenWidth * .15),
+                            child: Opacity(
+                              opacity: 0.8,
+                              child: Image.asset(
+                                "mainGlitch.gif",
+                                color: Colors.white,
+                                colorBlendMode: BlendMode.modulate,
+                                scale: 0.4,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.centerRight,
+                            margin: EdgeInsets.only(
+                                top: screenHeight * .3,
+                                right: screenWidth * .1),
+                            child: const GlitchEffect(
+                                duration:
+                                    Duration(seconds: 1, milliseconds: 600),
+                                colors: [
+                                  Colors.yellow,
+                                  Colors.blue,
+                                  Colors.white
+                                ],
+                                child: Opacity(
+                                  opacity: 0.8,
+                                  child: Text(
+                                    "Error",
+                                    style: TextStyle(
+                                        fontFamily: "Cyberpunk",
+                                        fontSize: 120,
+                                        color: Colors.white),
+                                  ),
+                                )),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: screenHeight * .2,
+                      ),
+                      Container(
+                        key: keySkill2,
                         child: Opacity(
                           opacity: 0.8,
-                          child: Text(
-                            "Error",
-                            style: TextStyle(
-                                fontFamily: "Cyberpunk",
-                                fontSize: 120,
-                                color: Colors.white),
+                          child: Image.asset(
+                            "AiGlitch.jpg",
+                            color: const Color.fromARGB(255, 228, 222, 222),
+                            colorBlendMode: BlendMode.modulate,
+                            scale: 0.4,
                           ),
-                        )),
+                        ),
+                      ),
+                    ],
                   ),
+                  Container(
+                      padding: EdgeInsets.only(left: screenWidth * .55),
+                      child: milestones(
+                          (sqrt(pow(screenHeight, 2) + pow(screenWidth, 2)) *
+                              .5),
+                          scrollController,
+                          keySkills,
+                          keySkill2,
+                          keySkill3,
+                          verticalPixels)),
                 ],
-              ),
-              SizedBox(
-                height: screenHeight * .2,
-              ),
-              Opacity(
-                opacity: 0.8,
-                child: Image.asset(
-                  "AiGlitch.jpg",
-                  color: const Color.fromARGB(255, 228, 222, 222),
-                  colorBlendMode: BlendMode.modulate,
-                  scale: 0.4,
-                ),
               ),
               Container(
                 height: 1000,

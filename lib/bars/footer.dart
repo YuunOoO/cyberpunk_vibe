@@ -207,7 +207,7 @@ class _FooterState extends State<Footer> {
             child: Text(
               "© Copyright 2022",
               style: TextStyle(
-                  color: Color.fromARGB(255, 58, 55, 55),
+                  color: Color.fromARGB(255, 0, 0, 0),
                   fontSize: 22,
                   fontStyle: FontStyle.italic),
             ),

@@ -44,6 +44,7 @@ dependencies:
   fancy_cursor: ^0.1.2
   mailto: ^2.0.0
   web_smooth_scroll: ^1.0.0
+  timelines: ^0.1.0
 
 dev_dependencies:
   flutter_test:
