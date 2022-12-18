@@ -15,8 +15,10 @@ class Arrows {
       color: const Color.fromARGB(188, 255, 235, 59),
       iconSize: 60,
       onPressed: () {
-        scrollController.animateTo(getVerticalPixels(key) + y,
-            duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+        scrollController.animateTo(
+            getVerticalPixels(key) + scrollController.position.pixels,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeIn);
       },
     );
   }
@@ -30,8 +32,10 @@ class Arrows {
       onPressed: () {
         print(getVerticalPixels(key));
         print(y);
-        scrollController.animateTo(getVerticalPixels(key) + y,
-            duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+        scrollController.animateTo(
+            getVerticalPixels(key) + scrollController.position.pixels,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeIn);
       },
     );
   }

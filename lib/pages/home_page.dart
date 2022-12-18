@@ -9,7 +9,6 @@ import 'package:dario_lopianov/paintings/main_card.dart';
 import 'package:dario_lopianov/paintings/punk_icons.dart';
 import 'package:dario_lopianov/paintings/top_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:glitcheffect/glitcheffect.dart';
 import 'package:rive/rive.dart';
@@ -36,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   late double screenHeight;
 
   //no need any mech bcs its only 4 icons
+  bool loadcard = false;
   bool load4Buttons = false;
   bool hover1 = false;
   bool hover2 = false;
@@ -49,10 +49,18 @@ class _HomePageState extends State<HomePage> {
   bool appbarButton4 = false;
 
   late RiveAnimationController _controller;
-  final player = AudioPlayer();
   late ScrollController scrollController;
-
   double verticalPixels = 0;
+
+  //audio
+  final player = AudioPlayer();
+
+  @override
+  void dispose() {
+    player.dispose();
+
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -60,16 +68,24 @@ class _HomePageState extends State<HomePage> {
     scrollController = ScrollController();
     _controller = SimpleAnimation('hands');
 
-    //initialization();
     scrollController.addListener(() {
-      setState(() {
-        verticalPixels = scrollController.position.pixels;
+      verticalPixels = scrollController.position.pixels;
 
-        print('$verticalPixels xd');
-        if (verticalPixels <= screenHeight * .4) {
-          load4Buttons = false;
+      if (verticalPixels <= screenHeight * .35) {
+        load4Buttons = false;
+        if (loadcard) {
+          setState(() {
+            loadcard = false;
+          });
         }
-      });
+      }
+      if (verticalPixels > screenHeight * .35) {
+        if (!loadcard) {
+          setState(() {
+            loadcard = true;
+          });
+        }
+      }
     });
   }
 
@@ -386,9 +402,7 @@ class _HomePageState extends State<HomePage> {
                 }),
                 curve: Curves.fastOutSlowIn,
                 duration: const Duration(milliseconds: 500),
-                padding: EdgeInsets.only(
-                    left:
-                        verticalPixels >= screenHeight * .3 ? 0 : screenWidth),
+                padding: EdgeInsets.only(left: loadcard ? 0 : screenWidth),
                 child: Opacity(
                   opacity: 0.85,
                   child: Stack(
@@ -448,6 +462,7 @@ class _HomePageState extends State<HomePage> {
                               duration: const Duration(milliseconds: 400),
                               opacity: load4Buttons ? 1 : 0,
                               child: Container(
+                                width: screenWidth,
                                 margin: EdgeInsets.only(
                                     right: load4Buttons ? screenWidth * .05 : 0,
                                     bottom: screenHeight * .05),
@@ -726,7 +741,6 @@ class _HomePageState extends State<HomePage> {
                           verticalPixels)),
                 ],
               ),
-
               //TODO
               Footer(
                 width: screenWidth,
