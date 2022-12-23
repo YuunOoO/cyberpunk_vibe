@@ -23,7 +23,7 @@ Widget milestones(double screenHeight, ScrollController scrollController,
             Padding(
               padding: EdgeInsets.only(top: screenHeight * .025),
               child: Text(
-                "${index + 1}/2",
+                "${index + 1}/3",
                 style: const TextStyle(
                     color: Colors.yellow,
                     fontSize: 18,

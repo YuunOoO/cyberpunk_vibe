@@ -46,6 +46,7 @@ dependencies:
   web_smooth_scroll: ^1.0.0
   timelines: ^0.1.0
   flutter_native_splash: ^2.2.16
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

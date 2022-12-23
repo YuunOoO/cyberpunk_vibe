@@ -1,9 +1,11 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:dario_lopianov/bars/footer.dart';
 import 'package:dario_lopianov/buttons/appbar_button.dart';
 import 'package:dario_lopianov/custom_widgets/milestones/timeline.dart';
+import 'package:dario_lopianov/pages/warning.dart';
 import 'package:dario_lopianov/paintings/card_lines.dart';
 import 'package:dario_lopianov/paintings/main_card.dart';
 import 'package:dario_lopianov/paintings/punk_icons.dart';
@@ -65,6 +67,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+
     scrollController = ScrollController();
     _controller = SimpleAnimation('hands');
 
@@ -87,6 +90,7 @@ class _HomePageState extends State<HomePage> {
         }
       }
     });
+    Future.delayed(Duration.zero, () => Warning().showAlert(context, player));
   }
 
   @override
@@ -310,8 +314,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {}, child: Icon(Icons.arrow_upward)),
       key: scaffoldKey,
       backgroundColor: Colors.black,
       body: WebSmoothScroll(
@@ -331,7 +333,7 @@ class _HomePageState extends State<HomePage> {
                     height: screenHeight * .8,
                     child: Center(
                       child: RiveAnimation.asset(
-                        'assets/pixel_art.riv',
+                        'assets/pixel_baji3.riv',
                         animations: const ['head', 'hands'],
                         controllers: [_controller],
                         fit: BoxFit.contain,
