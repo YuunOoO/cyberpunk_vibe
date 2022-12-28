@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:mailto/mailto.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -97,23 +98,29 @@ class _FooterState extends State<Footer> {
                     SizedBox(
                       width: widget.width * .005,
                     ),
-                    const Text(
-                      "dariusz.lopian@gmail.com",
-                      style: TextStyle(
-                          fontSize: 24,
-                          color: Color.fromARGB(157, 0, 0, 0),
-                          fontWeight: FontWeight.w700),
+                    const Expanded(
+                      child: AutoSizeText(
+                        "dariusz.lopian@gmail.com",
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontSize: 24,
+                            color: Color.fromARGB(157, 0, 0, 0),
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
                     const Spacer(),
                     SizedBox(
                       width: widget.width * .26,
-                      child: const Text(
-                        "Do you want to cooperate with me?",
-                        style: TextStyle(
-                          color: Colors.yellow,
-                          fontFamily: "Cyberpunk",
-                          fontWeight: FontWeight.w700,
-                          fontSize: 40,
+                      child: const Expanded(
+                        child: AutoSizeText(
+                          "Do you want to cooperate with me?",
+                          maxLines: 2,
+                          style: TextStyle(
+                            color: Colors.yellow,
+                            fontFamily: "Cyberpunk",
+                            fontWeight: FontWeight.w700,
+                            fontSize: 40,
+                          ),
                         ),
                       ),
                     ),
@@ -124,7 +131,8 @@ class _FooterState extends State<Footer> {
                 flex: 3,
                 child: Column(
                   children: [
-                    const Text(
+                    const AutoSizeText(
+                      maxLines: 1,
                       "Contact me",
                       style: TextStyle(
                           fontSize: 32,
@@ -217,8 +225,9 @@ class _FooterState extends State<Footer> {
           ),
           const Spacer(),
           const Center(
-            child: Text(
+            child: AutoSizeText(
               "© Copyright 2022",
+              maxLines: 1,
               style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
                   fontSize: 22,

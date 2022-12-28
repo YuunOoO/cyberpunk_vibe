@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dario_lopianov/bars/footer.dart';
 import 'package:dario_lopianov/buttons/appbar_button.dart';
 import 'package:dario_lopianov/custom_widgets/milestones/timeline.dart';
@@ -35,6 +36,7 @@ class _HomePageState extends State<HomePage> {
   late double container_width;
   late double screenWidth;
   late double screenHeight;
+  late double maxHeight;
 
   //no need any mech bcs its only 4 icons
   bool loadcard = false;
@@ -67,6 +69,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    maxHeight = WidgetsBinding.instance.window.physicalSize.height;
 
     scrollController = ScrollController();
     _controller = SimpleAnimation('hands');
@@ -101,217 +104,250 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
-        preferredSize: Size(MediaQuery.of(context).size.width + 100, 100),
-        child: Stack(
-          children: [
-            Stack(
-              children: <Widget>[
-                Container(
-                  color: const Color.fromARGB(255, 255, 245, 105),
-                  height: 50,
-                  width: MediaQuery.of(context).size.width,
-                ),
-                Container(), // Required some widget in between to float AppBar
-                Positioned(
-                  // To take AppBar Size only
-                  top: 50.0,
-                  left: -20.0,
-                  right: -30.0,
-                  child: AppBar(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    title: CustomPaint(
-                      size: Size(container_width * 2 + 100, (100).toDouble()),
-                      foregroundPainter: TopAppbar(),
+        preferredSize: Size(
+            MediaQuery.of(context).size.width + 100, 100 * 1080 / maxHeight),
+        child: Transform.scale(
+          alignment: Alignment.topCenter,
+          scaleY: screenHeight / maxHeight * 0.99,
+          child: Stack(
+            children: [
+              Stack(
+                children: <Widget>[
+                  Container(
+                    color: const Color.fromARGB(255, 255, 245, 105),
+                    height: 52,
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                  Container(), // Required some widget in between to float AppBar
+                  Positioned(
+                    // To take AppBar Size only
+                    top: 50.0,
+                    left: -20.0,
+                    right: -30.0,
+                    child: AppBar(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      title: CustomPaint(
+                        size: Size(container_width * 2 + 100, (100).toDouble()),
+                        foregroundPainter: TopAppbar(),
+                      ),
                     ),
-                  ),
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 5.0),
-              child: Row(
-                children: [
-                  InkWell(
-                    mouseCursor: SystemMouseCursors.none,
-                    onTap: () {
-                      player.play("assets/sounds/error.mp3");
-                      scrollController.animateTo(screenHeight * .1,
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeIn);
-                    },
-                    onHover: (value) async {
-                      if (value) {
-                        player.play("assets/sounds/error.mp3");
-                      }
-                      for (int i = 0; i < 3; i++) {
-                        setState(() {
-                          appbarButton1 = !appbarButton1;
-                        });
-                        await Future.delayed(const Duration(milliseconds: 60));
-                      }
-                    },
-                    child: CustomPaint(
-                        size: Size(screenWidth, screenWidth),
-                        painter: AppBarButton(appbarButton1),
-                        child: Container(
-                          height: 45,
-                          width: screenWidth * .1,
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
-                            child: Center(
-                              child: Text(
-                                "Home",
-                                style: TextStyle(
-                                    color: appbarButton1
-                                        ? Colors.white
-                                        : Colors.yellow,
-                                    fontFamily: "Cyberpunk",
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
-                        )),
-                  ),
-                  const Spacer(),
-                  InkWell(
-                    mouseCursor: SystemMouseCursors.none,
-                    onTap: () {
-                      player.play("assets/sounds/error.mp3");
-                      RenderBox box = keyAbout.currentContext!
-                          .findRenderObject() as RenderBox;
-                      Offset position = box.localToGlobal(Offset.zero);
-                      double y = position.dy;
-                      scrollController.animateTo(y + verticalPixels,
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeIn);
-                    },
-                    onHover: (value) async {
-                      if (value) {
-                        player.play("assets/sounds/error.mp3");
-                      }
-                      for (int i = 0; i < 3; i++) {
-                        setState(() {
-                          appbarButton2 = !appbarButton2;
-                        });
-                        await Future.delayed(const Duration(milliseconds: 60));
-                      }
-                    },
-                    child: CustomPaint(
-                        size: Size(screenWidth, screenWidth),
-                        painter: AppBarButton(appbarButton2),
-                        child: Container(
-                          height: 45,
-                          width: screenWidth * .1,
-                          alignment: Alignment.center,
-                          child: const Padding(
-                            padding: EdgeInsets.only(bottom: 15),
-                            child: Center(
-                              child: Text(
-                                "About",
-                                style: TextStyle(
-                                    color: Colors.yellow,
-                                    fontFamily: "Cyberpunk",
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
-                        )),
-                  ),
-                  InkWell(
-                    mouseCursor: SystemMouseCursors.none,
-                    onTap: () {
-                      player.play("assets/sounds/error.mp3");
-                      RenderBox box = keySkills.currentContext!
-                          .findRenderObject() as RenderBox;
-                      Offset position = box.localToGlobal(Offset.zero);
-                      double y = position.dy;
-                      scrollController.animateTo(y + verticalPixels - 20,
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeIn);
-                    },
-                    onHover: (value) async {
-                      if (value) {
-                        player.play("assets/sounds/error.mp3");
-                      }
-                      for (int i = 0; i < 3; i++) {
-                        setState(() {
-                          appbarButton3 = !appbarButton3;
-                        });
-                        await Future.delayed(const Duration(milliseconds: 60));
-                      }
-                    },
-                    child: CustomPaint(
-                        size: Size(screenWidth, screenWidth),
-                        painter: AppBarButton(appbarButton3),
-                        child: Container(
-                          height: 45,
-                          width: screenWidth * .11,
-                          alignment: Alignment.center,
-                          child: const Padding(
-                            padding: EdgeInsets.only(bottom: 15),
-                            child: Center(
-                              child: Text(
-                                "Skills",
-                                style: TextStyle(
-                                    color: Colors.yellow,
-                                    fontFamily: "Cyberpunk",
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
-                        )),
-                  ),
-                  InkWell(
-                    mouseCursor: SystemMouseCursors.none,
-                    onTap: () {
-                      player.play("assets/sounds/error.mp3");
-                      scrollController.animateTo(
-                          scrollController.position.maxScrollExtent,
-                          duration: const Duration(milliseconds: 800),
-                          curve: Curves.easeIn);
-                    },
-                    onHover: (value) async {
-                      if (value) {
-                        //    player.play("assets/sounds/error.mp3");
-                      }
-                      for (int i = 0; i < 3; i++) {
-                        setState(() {
-                          appbarButton4 = !appbarButton4;
-                        });
-                        await Future.delayed(const Duration(milliseconds: 60));
-                      }
-                    },
-                    child: CustomPaint(
-                        size: Size(screenWidth, screenWidth),
-                        painter: AppBarButton(appbarButton4),
-                        child: Container(
-                          height: 45,
-                          width: screenWidth * .13,
-                          alignment: Alignment.center,
-                          child: const Padding(
-                            padding: EdgeInsets.only(bottom: 15),
-                            child: Center(
-                              child: Text(
-                                "Contatct",
-                                style: TextStyle(
-                                    color: Colors.yellow,
-                                    fontFamily: "Cyberpunk",
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
-                        )),
-                  ),
+                  )
                 ],
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child: Row(
+                  children: [
+                    InkWell(
+                      mouseCursor: SystemMouseCursors.none,
+                      onTap: () {
+                        player.play("assets/sounds/error.mp3");
+                        scrollController.animateTo(screenHeight * .1,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeIn);
+                      },
+                      onHover: (value) async {
+                        if (value) {
+                          player.play("assets/sounds/error.mp3");
+                        }
+                        for (int i = 0; i < 3; i++) {
+                          setState(() {
+                            appbarButton1 = !appbarButton1;
+                          });
+                          await Future.delayed(
+                              const Duration(milliseconds: 60));
+                        }
+                      },
+                      child: CustomPaint(
+                          size: Size(screenWidth + 10, screenWidth),
+                          painter: AppBarButton(appbarButton1),
+                          child: Container(
+                            height: 45,
+                            width: screenWidth * .1,
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(bottom: 10, left: 4),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: Expanded(
+                                    child: AutoSizeText(
+                                      "Home",
+                                      style: TextStyle(
+                                          color: appbarButton1
+                                              ? Colors.white
+                                              : Colors.yellow,
+                                          fontFamily: "Cyberpunk",
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )),
+                    ),
+                    const Spacer(),
+                    InkWell(
+                      mouseCursor: SystemMouseCursors.none,
+                      onTap: () {
+                        player.play("assets/sounds/error.mp3");
+                        RenderBox box = keyAbout.currentContext!
+                            .findRenderObject() as RenderBox;
+                        Offset position = box.localToGlobal(Offset.zero);
+                        double y = position.dy;
+                        scrollController.animateTo(y + verticalPixels,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeIn);
+                      },
+                      onHover: (value) async {
+                        if (value) {
+                          player.play("assets/sounds/error.mp3");
+                        }
+                        for (int i = 0; i < 3; i++) {
+                          setState(() {
+                            appbarButton2 = !appbarButton2;
+                          });
+                          await Future.delayed(
+                              const Duration(milliseconds: 60));
+                        }
+                      },
+                      child: CustomPaint(
+                          size: Size(screenWidth + 10, screenWidth),
+                          painter: AppBarButton(appbarButton2),
+                          child: Container(
+                            height: 45,
+                            width: screenWidth * .1,
+                            alignment: Alignment.center,
+                            child: const Padding(
+                              padding: EdgeInsets.only(bottom: 10, left: 2),
+                              child: Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(4.0),
+                                  child: Expanded(
+                                    child: AutoSizeText(
+                                      "About",
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                          color: Colors.yellow,
+                                          fontFamily: "Cyberpunk",
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )),
+                    ),
+                    InkWell(
+                      mouseCursor: SystemMouseCursors.none,
+                      onTap: () {
+                        player.play("assets/sounds/error.mp3");
+                        RenderBox box = keySkills.currentContext!
+                            .findRenderObject() as RenderBox;
+                        Offset position = box.localToGlobal(Offset.zero);
+                        double y = position.dy;
+                        scrollController.animateTo(y + verticalPixels - 20,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeIn);
+                      },
+                      onHover: (value) async {
+                        if (value) {
+                          player.play("assets/sounds/error.mp3");
+                        }
+                        for (int i = 0; i < 3; i++) {
+                          setState(() {
+                            appbarButton3 = !appbarButton3;
+                          });
+                          await Future.delayed(
+                              const Duration(milliseconds: 60));
+                        }
+                      },
+                      child: CustomPaint(
+                          size: Size(screenWidth + 10, screenWidth),
+                          painter: AppBarButton(appbarButton3),
+                          child: Container(
+                            height: 45,
+                            width: screenWidth * .1,
+                            alignment: Alignment.center,
+                            child: const Padding(
+                              padding: EdgeInsets.only(bottom: 10, left: 3),
+                              child: Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(4.0),
+                                  child: Expanded(
+                                    child: AutoSizeText(
+                                      "Skills",
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                          color: Colors.yellow,
+                                          fontFamily: "Cyberpunk",
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )),
+                    ),
+                    InkWell(
+                      mouseCursor: SystemMouseCursors.none,
+                      onTap: () {
+                        player.play("assets/sounds/error.mp3");
+                        scrollController.animateTo(
+                            scrollController.position.maxScrollExtent,
+                            duration: const Duration(milliseconds: 800),
+                            curve: Curves.easeIn);
+                      },
+                      onHover: (value) async {
+                        if (value) {
+                          //    player.play("assets/sounds/error.mp3");
+                        }
+                        for (int i = 0; i < 3; i++) {
+                          setState(() {
+                            appbarButton4 = !appbarButton4;
+                          });
+                          await Future.delayed(
+                              const Duration(milliseconds: 60));
+                        }
+                      },
+                      child: CustomPaint(
+                          size: Size(screenWidth + 10, screenWidth),
+                          painter: AppBarButton(appbarButton4),
+                          child: Container(
+                            height: 45,
+                            width: screenWidth * .1,
+                            alignment: Alignment.center,
+                            child: const Padding(
+                              padding: EdgeInsets.only(bottom: 10, left: 3),
+                              child: Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(4.0),
+                                  child: Expanded(
+                                    child: AutoSizeText(
+                                      "Contatct",
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                          color: Colors.yellow,
+                                          fontFamily: "Cyberpunk",
+                                          fontSize: 23,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       key: scaffoldKey,
@@ -345,7 +381,7 @@ class _HomePageState extends State<HomePage> {
                     width: screenWidth * .5,
                     margin: EdgeInsets.only(
                         top: screenHeight * .05, left: screenWidth * .05),
-                    child: const Text(
+                    child: const AutoSizeText(
                       "Welcome in ",
                       maxLines: 1,
                       style: TextStyle(
@@ -367,34 +403,43 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.bottomRight,
-                    margin: EdgeInsets.only(
-                        top: screenHeight * .55, right: screenWidth * .05),
-                    child: const GlitchEffect(
-                      colors: [Colors.yellow, Colors.blue, Colors.white],
-                      duration: Duration(milliseconds: 400),
-                      child: Text(
-                        "Darius world",
-                        style: TextStyle(
-                            fontFamily: "Cyberpunk",
-                            fontWeight: FontWeight.bold,
-                            shadows: <Shadow>[
-                              Shadow(
-                                offset: Offset(10.0, 10.0),
-                                blurRadius: 3.0,
-                                color: Color.fromARGB(255, 4, 121, 167),
-                              ),
-                              Shadow(
-                                offset: Offset(10.0, 10.0),
-                                blurRadius: 8.0,
-                                color: Color.fromARGB(123, 14, 14, 112),
-                              ),
-                            ],
-                            fontSize: 90,
-                            color: Colors.yellow),
+                  Row(
+                    children: [
+                      Spacer(),
+                      Container(
+                        width: screenWidth * .5,
+                        alignment: Alignment.bottomRight,
+                        margin: EdgeInsets.only(
+                            top: screenHeight * .55, right: screenWidth * .05),
+                        child: const GlitchEffect(
+                          colors: [Colors.yellow, Colors.blue, Colors.white],
+                          duration: Duration(milliseconds: 400),
+                          child: Expanded(
+                            child: AutoSizeText(
+                              "Darius world",
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontFamily: "Cyberpunk",
+                                  fontWeight: FontWeight.bold,
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      offset: Offset(10.0, 10.0),
+                                      blurRadius: 3.0,
+                                      color: Color.fromARGB(255, 4, 121, 167),
+                                    ),
+                                    Shadow(
+                                      offset: Offset(10.0, 10.0),
+                                      blurRadius: 8.0,
+                                      color: Color.fromARGB(123, 14, 14, 112),
+                                    ),
+                                  ],
+                                  fontSize: 90,
+                                  color: Colors.yellow),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
