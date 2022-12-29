@@ -38,11 +38,10 @@ Widget milestones(double screenHeight, ScrollController scrollController,
           return arrows.arrowDown(skills2);
         } else if (index == 1) {
           //TODO
-          return Padding(
-            padding: const EdgeInsets.only(left: 150),
-            child: ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+          return Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 arrows.arrowUp(skills),
                 arrows.arrowDown(skills3),

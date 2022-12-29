@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       home: FancyCursor(
         trailColor: Colors.blue,
         customCursor: Image.asset(
-          "cursor.gif",
+          "assets/cursor.gif",
           color: Colors.white,
           colorBlendMode: BlendMode.modulate,
           scale: 0.8,

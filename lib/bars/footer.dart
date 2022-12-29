@@ -85,50 +85,47 @@ class _FooterState extends State<Footer> {
         child: Column(children: [
           Row(
             children: [
-              Expanded(
-                flex: 4,
-                child: Container(
-                  padding: EdgeInsets.only(left: widget.width * .02),
-                  child: Row(children: [
-                    const Icon(
-                      Icons.email,
-                      color: Color.fromARGB(255, 14, 61, 100),
-                      size: 32,
+              Container(
+                width: widget.width * 4 / 7,
+                padding: EdgeInsets.only(left: widget.width * .02),
+                child: Row(children: [
+                  const Icon(
+                    Icons.email,
+                    color: Color.fromARGB(255, 14, 61, 100),
+                    size: 32,
+                  ),
+                  SizedBox(
+                    width: widget.width * .005,
+                  ),
+                  SizedBox(
+                    width: widget.width * .15,
+                    child: const AutoSizeText(
+                      "dariusz.lopian@gmail.com",
+                      maxLines: 1,
+                      style: TextStyle(
+                          fontSize: 24,
+                          color: Color.fromARGB(157, 0, 0, 0),
+                          fontWeight: FontWeight.w700),
                     ),
-                    SizedBox(
-                      width: widget.width * .005,
-                    ),
-                    const Expanded(
-                      child: AutoSizeText(
-                        "dariusz.lopian@gmail.com",
-                        maxLines: 1,
-                        style: TextStyle(
-                            fontSize: 24,
-                            color: Color.fromARGB(157, 0, 0, 0),
-                            fontWeight: FontWeight.w700),
+                  ),
+                  const Spacer(),
+                  SizedBox(
+                    width: widget.width * .26,
+                    child: const AutoSizeText(
+                      "Do you want to cooperate with me?",
+                      maxLines: 2,
+                      style: TextStyle(
+                        color: Colors.yellow,
+                        fontFamily: "Cyberpunk",
+                        fontWeight: FontWeight.w700,
+                        fontSize: 40,
                       ),
                     ),
-                    const Spacer(),
-                    SizedBox(
-                      width: widget.width * .26,
-                      child: const Expanded(
-                        child: AutoSizeText(
-                          "Do you want to cooperate with me?",
-                          maxLines: 2,
-                          style: TextStyle(
-                            color: Colors.yellow,
-                            fontFamily: "Cyberpunk",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 40,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
+                  ),
+                ]),
               ),
-              Expanded(
-                flex: 3,
+              SizedBox(
+                width: widget.width * 3 / 7,
                 child: Column(
                   children: [
                     const AutoSizeText(
@@ -167,7 +164,7 @@ class _FooterState extends State<Footer> {
                       margin: EdgeInsets.only(
                           top: widget.height * .02, left: widget.width * .01),
                       width: widget.width * .2,
-                      //   height: widget.height * .1,
+                      height: widget.height * .35,
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),

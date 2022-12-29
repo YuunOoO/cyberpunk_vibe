@@ -172,17 +172,15 @@ class _HomePageState extends State<HomePage> {
                               child: Center(
                                 child: Padding(
                                   padding: const EdgeInsets.all(3.0),
-                                  child: Expanded(
-                                    child: AutoSizeText(
-                                      "Home",
-                                      style: TextStyle(
-                                          color: appbarButton1
-                                              ? Colors.white
-                                              : Colors.yellow,
-                                          fontFamily: "Cyberpunk",
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  child: AutoSizeText(
+                                    "Home",
+                                    style: TextStyle(
+                                        color: appbarButton1
+                                            ? Colors.white
+                                            : Colors.yellow,
+                                        fontFamily: "Cyberpunk",
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
@@ -226,16 +224,14 @@ class _HomePageState extends State<HomePage> {
                               child: Center(
                                 child: Padding(
                                   padding: EdgeInsets.all(4.0),
-                                  child: Expanded(
-                                    child: AutoSizeText(
-                                      "About",
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                          color: Colors.yellow,
-                                          fontFamily: "Cyberpunk",
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  child: AutoSizeText(
+                                    "About",
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        color: Colors.yellow,
+                                        fontFamily: "Cyberpunk",
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
@@ -278,16 +274,14 @@ class _HomePageState extends State<HomePage> {
                               child: Center(
                                 child: Padding(
                                   padding: EdgeInsets.all(4.0),
-                                  child: Expanded(
-                                    child: AutoSizeText(
-                                      "Skills",
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                          color: Colors.yellow,
-                                          fontFamily: "Cyberpunk",
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  child: AutoSizeText(
+                                    "Skills",
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        color: Colors.yellow,
+                                        fontFamily: "Cyberpunk",
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
@@ -327,16 +321,14 @@ class _HomePageState extends State<HomePage> {
                               child: Center(
                                 child: Padding(
                                   padding: EdgeInsets.all(4.0),
-                                  child: Expanded(
-                                    child: AutoSizeText(
-                                      "Contatct",
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                          color: Colors.yellow,
-                                          fontFamily: "Cyberpunk",
-                                          fontSize: 23,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  child: AutoSizeText(
+                                    "Contatct",
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        color: Colors.yellow,
+                                        fontFamily: "Cyberpunk",
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
@@ -414,28 +406,26 @@ class _HomePageState extends State<HomePage> {
                         child: const GlitchEffect(
                           colors: [Colors.yellow, Colors.blue, Colors.white],
                           duration: Duration(milliseconds: 400),
-                          child: Expanded(
-                            child: AutoSizeText(
-                              "Darius world",
-                              maxLines: 1,
-                              style: TextStyle(
-                                  fontFamily: "Cyberpunk",
-                                  fontWeight: FontWeight.bold,
-                                  shadows: <Shadow>[
-                                    Shadow(
-                                      offset: Offset(10.0, 10.0),
-                                      blurRadius: 3.0,
-                                      color: Color.fromARGB(255, 4, 121, 167),
-                                    ),
-                                    Shadow(
-                                      offset: Offset(10.0, 10.0),
-                                      blurRadius: 8.0,
-                                      color: Color.fromARGB(123, 14, 14, 112),
-                                    ),
-                                  ],
-                                  fontSize: 90,
-                                  color: Colors.yellow),
-                            ),
+                          child: AutoSizeText(
+                            "Darius world",
+                            maxLines: 1,
+                            style: TextStyle(
+                                fontFamily: "Cyberpunk",
+                                fontWeight: FontWeight.bold,
+                                shadows: <Shadow>[
+                                  Shadow(
+                                    offset: Offset(10.0, 10.0),
+                                    blurRadius: 3.0,
+                                    color: Color.fromARGB(255, 4, 121, 167),
+                                  ),
+                                  Shadow(
+                                    offset: Offset(10.0, 10.0),
+                                    blurRadius: 8.0,
+                                    color: Color.fromARGB(123, 14, 14, 112),
+                                  ),
+                                ],
+                                fontSize: 90,
+                                color: Colors.yellow),
                           ),
                         ),
                       ),
@@ -722,7 +712,7 @@ class _HomePageState extends State<HomePage> {
                             child: Opacity(
                               opacity: 0.8,
                               child: Image.asset(
-                                "mainGlitch.gif",
+                                "assets/mainGlitch.gif",
                                 color: Colors.white,
                                 colorBlendMode: BlendMode.modulate,
                                 scale: 0.4,
@@ -763,7 +753,7 @@ class _HomePageState extends State<HomePage> {
                         child: Opacity(
                           opacity: 0.8,
                           child: Image.asset(
-                            "AiGlitch.jpg",
+                            "assets/AiGlitch.jpg",
                             color: const Color.fromARGB(255, 228, 222, 222),
                             colorBlendMode: BlendMode.modulate,
                             scale: 0.4,

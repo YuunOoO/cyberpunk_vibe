@@ -81,7 +81,9 @@ flutter:
   assets:
     - assets/
     - assets/sounds/
-    - assets/sounds/click.mp3
+    - assets/cursor.gif
+    - assets/mainGlitch.gif
+    - assets/AiGlitch.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
