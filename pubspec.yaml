@@ -111,6 +111,9 @@ flutter:
     - family: Cyberpunk
       fonts:
         - asset: assets/fonts/Cyberpunk.ttf
+    - family: Minecraft
+      fonts:
+        - asset: assets/fonts/Minecraft.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

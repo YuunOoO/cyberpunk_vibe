@@ -6,6 +6,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dario_lopianov/bars/footer.dart';
 import 'package:dario_lopianov/buttons/appbar_button.dart';
 import 'package:dario_lopianov/custom_widgets/milestones/timeline.dart';
+import 'package:dario_lopianov/helper/item_3d_content.dart';
+import 'package:dario_lopianov/helper/item_3d_icon.dart';
 import 'package:dario_lopianov/pages/warning.dart';
 import 'package:dario_lopianov/paintings/card_lines.dart';
 import 'package:dario_lopianov/paintings/item_3d.dart';
@@ -399,7 +401,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Row(
                     children: [
-                      Spacer(),
+                      const Spacer(),
                       Container(
                         width: screenWidth * .5,
                         alignment: Alignment.bottomRight,
@@ -778,17 +780,49 @@ class _HomePageState extends State<HomePage> {
                           child: Swiper(
                             itemBuilder: (BuildContext context, int index) {
                               print("index: $index");
-                              return Container(
-                                child: CustomPaint(
-                                  size: Size(
-                                      screenWidth * 0.25,
-                                      (screenWidth * 0.15)
-                                          .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-                                  painter: Item3D(),
-                                ),
+                              return Stack(
+                                children: [
+                                  Container(
+                                    height: screenHeight * .8,
+                                    width: screenWidth * .6,
+                                    child: CustomPaint(
+                                      size: Size(
+                                          screenWidth * 0.25,
+                                          (screenWidth * 0.15)
+                                              .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                                      painter: Item3D(),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: screenHeight * .8,
+                                    width: screenWidth * .4,
+                                    margin: EdgeInsets.only(
+                                        right: screenWidth * .1,
+                                        left: screenWidth * .05,
+                                        top: screenHeight * .02),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                            padding: EdgeInsets.only(
+                                                right: screenWidth * .05,
+                                                top: screenHeight * .02,
+                                                bottom: screenHeight * .02),
+                                            child: getIcon(index)),
+                                        AutoSizeText(
+                                          getText(index),
+                                          maxLines: 4,
+                                          style: const TextStyle(
+                                            fontSize: 70,
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
                               );
                             },
-                            itemCount: 10,
+                            itemCount: 5,
                             itemWidth: screenWidth * .4,
                             layout: SwiperLayout.STACK,
                           ),

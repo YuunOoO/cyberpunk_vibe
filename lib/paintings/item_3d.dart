@@ -4,7 +4,7 @@ class Item3D extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint0 = Paint()
-      ..color = Color.fromARGB(255, 165, 164, 164)
+      ..color = Color.fromARGB(255, 178, 178, 179)
       ..style = PaintingStyle.fill
       ..strokeWidth = 4;
 
@@ -24,7 +24,7 @@ class Item3D extends CustomPainter {
     Paint paint1 = Paint()
       ..color = const Color.fromARGB(255, 0, 0, 0)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 4;
+      ..strokeWidth = 6;
 
     Path path1 = Path();
     path1.moveTo(0, size.height * 0.0025000);
