@@ -1,9 +1,16 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dario_lopianov/custom_widgets/milestones/arrows.dart';
 import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
 
-Widget milestones(double screenHeight, ScrollController scrollController,
-    GlobalKey skills, GlobalKey skills2, GlobalKey skills3, double y) {
+Widget milestones(
+    double screenHeight,
+    double screenWidth,
+    ScrollController scrollController,
+    GlobalKey skills,
+    GlobalKey skills2,
+    GlobalKey skills3,
+    double y) {
   Arrows arrows = Arrows(scrollController, y);
 
   return Timeline.tileBuilder(
@@ -15,19 +22,30 @@ Widget milestones(double screenHeight, ScrollController scrollController,
         margin: const EdgeInsets.only(left: 10.0),
         child: Row(
           children: [
-            const Text(
-              "Progress ",
-              style: TextStyle(
-                  color: Colors.yellow, fontSize: 36, fontFamily: "Cyberpunk"),
+            Expanded(
+              child: SizedBox(
+                width: screenWidth * .35,
+                child: const AutoSizeText(
+                  "Progress ",
+                  maxLines: 1,
+                  style: TextStyle(
+                      color: Colors.yellow,
+                      fontSize: 36,
+                      fontFamily: "Cyberpunk"),
+                ),
+              ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: screenHeight * .025),
-              child: Text(
-                "${index + 1}/3",
-                style: const TextStyle(
-                    color: Colors.yellow,
-                    fontSize: 18,
-                    fontStyle: FontStyle.italic),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.only(top: screenHeight * .025),
+                child: AutoSizeText(
+                  "${index + 1}/3",
+                  maxLines: 1,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: screenWidth > 850 ? 16 : 10,
+                      fontStyle: FontStyle.italic),
+                ),
               ),
             ),
           ],

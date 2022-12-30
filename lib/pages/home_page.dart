@@ -441,7 +441,7 @@ class _HomePageState extends State<HomePage> {
                 duration: const Duration(milliseconds: 500),
                 padding: EdgeInsets.only(left: loadcard ? 0 : screenWidth),
                 child: Opacity(
-                  opacity: 0.85,
+                  opacity: 0.80,
                   child: Stack(
                     alignment: AlignmentDirectional.bottomEnd,
                     children: [
@@ -720,10 +720,10 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Container(
-                            alignment: Alignment.centerRight,
+                            width: screenWidth * .35,
                             margin: EdgeInsets.only(
-                                top: screenHeight * .3,
-                                right: screenWidth * .1),
+                                top: screenHeight * .33,
+                                left: screenWidth * .65),
                             child: const GlitchEffect(
                                 duration:
                                     Duration(seconds: 1, milliseconds: 600),
@@ -734,8 +734,9 @@ class _HomePageState extends State<HomePage> {
                                 ],
                                 child: Opacity(
                                   opacity: 0.8,
-                                  child: Text(
+                                  child: AutoSizeText(
                                     "Error",
+                                    maxLines: 1,
                                     style: TextStyle(
                                         fontFamily: "Cyberpunk",
                                         fontSize: 120,
@@ -771,6 +772,7 @@ class _HomePageState extends State<HomePage> {
                       child: milestones(
                           (sqrt(pow(screenHeight, 2) + pow(screenWidth, 2)) *
                               .5),
+                          screenWidth,
                           scrollController,
                           keySkills,
                           keySkill2,
