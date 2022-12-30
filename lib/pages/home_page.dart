@@ -8,6 +8,7 @@ import 'package:dario_lopianov/buttons/appbar_button.dart';
 import 'package:dario_lopianov/custom_widgets/milestones/timeline.dart';
 import 'package:dario_lopianov/pages/warning.dart';
 import 'package:dario_lopianov/paintings/card_lines.dart';
+import 'package:dario_lopianov/paintings/item_3d.dart';
 import 'package:dario_lopianov/paintings/main_card.dart';
 import 'package:dario_lopianov/paintings/punk_icons.dart';
 import 'package:dario_lopianov/paintings/top_appbar.dart';
@@ -17,6 +18,7 @@ import 'package:glitcheffect/glitcheffect.dart';
 import 'package:rive/rive.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
+import 'package:card_swiper/card_swiper.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -761,9 +763,36 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      Container(
-                        key: keySkill3,
-                        height: screenHeight,
+                      Transform(
+                        alignment: FractionalOffset.center,
+                        transform: Matrix4.identity()
+                          ..setEntry(0, 1, 0)
+                          ..rotateX(-175 / 360)
+                          ..rotateY(230 / 360)
+                          ..rotateZ(155 / 360),
+                        child: Container(
+                          margin: EdgeInsets.only(top: screenHeight * .15),
+                          key: keySkill3,
+                          height: screenHeight * .8,
+                          width: screenWidth * .6,
+                          child: Swiper(
+                            itemBuilder: (BuildContext context, int index) {
+                              print("index: $index");
+                              return Container(
+                                child: CustomPaint(
+                                  size: Size(
+                                      screenWidth * 0.25,
+                                      (screenWidth * 0.15)
+                                          .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                                  painter: Item3D(),
+                                ),
+                              );
+                            },
+                            itemCount: 10,
+                            itemWidth: screenWidth * .4,
+                            layout: SwiperLayout.STACK,
+                          ),
+                        ),
                       ),
                     ],
                   ),
