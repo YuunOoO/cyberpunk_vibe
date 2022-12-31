@@ -805,14 +805,14 @@ class _HomePageState extends State<HomePage> {
                                         Container(
                                             padding: EdgeInsets.only(
                                                 right: screenWidth * .05,
-                                                top: screenHeight * .02,
-                                                bottom: screenHeight * .02),
+                                                top: screenHeight * .03,
+                                                bottom: screenHeight * .1),
                                             child: getIcon(index)),
                                         AutoSizeText(
                                           getText(index),
                                           maxLines: 4,
                                           style: const TextStyle(
-                                            fontSize: 70,
+                                            fontSize: 50,
                                             color: Color.fromARGB(255, 0, 0, 0),
                                           ),
                                         ),

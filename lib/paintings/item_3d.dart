@@ -4,7 +4,7 @@ class Item3D extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint0 = Paint()
-      ..color = Color.fromARGB(255, 178, 178, 179)
+      ..color = Color.fromARGB(248, 170, 45, 45)
       ..style = PaintingStyle.fill
       ..strokeWidth = 4;
 

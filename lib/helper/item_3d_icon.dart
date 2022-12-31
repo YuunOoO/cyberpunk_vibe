@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Widget getIcon(int index) {
   if (index == 0) {
@@ -7,18 +8,27 @@ Widget getIcon(int index) {
     );
   } else if (index == 1) {
     return const Icon(
-      Icons.bug_report,
-      size: 140,
+      FontAwesomeIcons.gitAlt,
+      color: Colors.black,
+      size: 160,
     );
   } else if (index == 2) {
     return const Icon(
-      Icons.science,
-      size: 140,
+      FontAwesomeIcons.gears,
+      color: Colors.black,
+      size: 160,
+    );
+  } else if (index == 3) {
+    return const Icon(
+      FontAwesomeIcons.screwdriverWrench,
+      color: Colors.black,
+      size: 160,
     );
   } else {
     return const Icon(
-      Icons.computer_outlined,
-      size: 140,
+      FontAwesomeIcons.computer,
+      color: Colors.black,
+      size: 160,
     );
   }
 }

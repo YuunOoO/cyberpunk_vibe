@@ -1,11 +1,13 @@
 String getText(int index) {
   if (index == 0) {
-    return "Multiplatform Android Ios Weeb";
+    return "Knowledge of Dart and C++ programming languages, library, tools, widgets";
   } else if (index == 1) {
-    return "Flutter Dart C++ Git -> GitHub/GitLab";
+    return "Experience with version control tools: Git, GitHub, Gitlab";
   } else if (index == 2) {
-    return "Rest Api Json BloC / Provider SQL Xamarin Android SDK";
+    return "Technologies likes State Managment BloC / Provider, Rest Api, Json Serializable, Async";
+  } else if (index == 3) {
+    return "Problem solving / bug fixing / analytical skills";
   } else {
-    return "Responsive UI Json Serializable UI/UX  Scrum Visual Studio Code";
+    return "Code editors: Visual Studio Code / Android Studio / Xcode";
   }
 }
