@@ -753,78 +753,108 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         height: screenHeight * .2,
                       ),
-                      Container(
-                        key: keySkill2,
-                        child: Opacity(
-                          opacity: 0.8,
-                          child: Image.asset(
-                            "assets/AiGlitch.jpg",
-                            color: const Color.fromARGB(255, 228, 222, 222),
-                            colorBlendMode: BlendMode.modulate,
-                            scale: 0.4,
+                      Stack(
+                        children: [
+                          Container(
+                            key: keySkill2,
+                            child: Opacity(
+                              opacity: 0.8,
+                              child: Image.asset(
+                                "assets/AiGlitch.jpg",
+                                color: const Color.fromARGB(255, 228, 222, 222),
+                                colorBlendMode: BlendMode.modulate,
+                                scale: 0.4,
+                              ),
+                            ),
                           ),
-                        ),
+                          Container(
+                            width: screenWidth * .7,
+                            padding: EdgeInsets.only(
+                                top: screenHeight * .35,
+                                left: screenWidth * .08),
+                            child: const AutoSizeText(
+                              "Awesome UI/UX responsible design",
+                              maxLines: 1,
+                              style: TextStyle(
+                                  color: Color.fromARGB(249, 189, 0, 0),
+                                  letterSpacing: 9,
+                                  fontFamily: "Minecraft",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 70),
+                            ),
+                          )
+                        ],
                       ),
-                      Transform(
-                        alignment: FractionalOffset.center,
-                        transform: Matrix4.identity()
-                          ..setEntry(0, 1, 0)
-                          ..rotateX(-175 / 360)
-                          ..rotateY(230 / 360)
-                          ..rotateZ(155 / 360),
-                        child: Container(
-                          margin: EdgeInsets.only(top: screenHeight * .15),
-                          key: keySkill3,
-                          height: screenHeight * .8,
-                          width: screenWidth * .6,
-                          child: Swiper(
-                            itemBuilder: (BuildContext context, int index) {
-                              print("index: $index");
-                              return Stack(
-                                children: [
-                                  Container(
-                                    height: screenHeight * .8,
-                                    width: screenWidth * .6,
-                                    child: CustomPaint(
-                                      size: Size(
-                                          screenWidth * 0.25,
-                                          (screenWidth * 0.15)
-                                              .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-                                      painter: Item3D(),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        margin: EdgeInsets.only(
+                            left: screenWidth * .08, bottom: screenHeight * .2),
+                        child: Transform(
+                          alignment: FractionalOffset.center,
+                          transform: Matrix4.identity()
+                            ..setEntry(0, 1, 0)
+                            ..rotateX(-175 / 360)
+                            ..rotateY(230 / 360)
+                            ..rotateZ(155 / 360),
+                          child: Container(
+                            margin: EdgeInsets.only(top: screenHeight * .15),
+                            key: keySkill3,
+                            height: screenHeight * .8,
+                            width: screenWidth * .6,
+                            child: Swiper(
+                              onIndexChanged: (value) {
+                                player.play('assets/sounds/click.mp3');
+                              },
+                              itemBuilder: (BuildContext context, int index) {
+                                print("index: $index");
+                                return Stack(
+                                  children: [
+                                    Container(
+                                      height: screenHeight * .8,
+                                      width: screenWidth * .6,
+                                      child: CustomPaint(
+                                        size: Size(
+                                            screenWidth * 0.25,
+                                            (screenWidth * 0.15)
+                                                .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                                        painter: Item3D(),
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    height: screenHeight * .8,
-                                    width: screenWidth * .4,
-                                    margin: EdgeInsets.only(
-                                        right: screenWidth * .1,
-                                        left: screenWidth * .05,
-                                        top: screenHeight * .02),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                            padding: EdgeInsets.only(
-                                                right: screenWidth * .05,
-                                                top: screenHeight * .03,
-                                                bottom: screenHeight * .1),
-                                            child: getIcon(index)),
-                                        AutoSizeText(
-                                          getText(index),
-                                          maxLines: 4,
-                                          style: const TextStyle(
-                                            fontSize: 50,
-                                            color: Color.fromARGB(255, 0, 0, 0),
+                                    Container(
+                                      height: screenHeight * .8,
+                                      width: screenWidth * .4,
+                                      margin: EdgeInsets.only(
+                                          right: screenWidth * .1,
+                                          left: screenWidth * .05,
+                                          top: screenHeight * .02),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                              padding: EdgeInsets.only(
+                                                  right: screenWidth * .05,
+                                                  top: screenHeight * .03,
+                                                  bottom: screenHeight * .1),
+                                              child:
+                                                  getIcon(index, screenWidth)),
+                                          AutoSizeText(
+                                            getText(index),
+                                            maxLines: 4,
+                                            style: const TextStyle(
+                                              fontSize: 50,
+                                              color:
+                                                  Color.fromARGB(255, 0, 0, 0),
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              );
-                            },
-                            itemCount: 5,
-                            itemWidth: screenWidth * .4,
-                            layout: SwiperLayout.STACK,
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                );
+                              },
+                              itemCount: 5,
+                              itemWidth: screenWidth * .4,
+                              layout: SwiperLayout.STACK,
+                            ),
                           ),
                         ),
                       ),

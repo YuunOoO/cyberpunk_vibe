@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-Widget getIcon(int index) {
+Widget getIcon(int index, double screenWidth) {
   if (index == 0) {
-    return const FlutterLogo(
-      size: 140,
+    return FlutterLogo(
+      size: screenWidth / 10,
     );
   } else if (index == 1) {
-    return const Icon(
+    return Icon(
       FontAwesomeIcons.gitAlt,
       color: Colors.black,
-      size: 160,
+      size: screenWidth / 10,
     );
   } else if (index == 2) {
-    return const Icon(
+    return Icon(
       FontAwesomeIcons.gears,
       color: Colors.black,
-      size: 160,
+      size: screenWidth / 10,
     );
   } else if (index == 3) {
-    return const Icon(
+    return Icon(
       FontAwesomeIcons.screwdriverWrench,
       color: Colors.black,
-      size: 160,
+      size: screenWidth / 10,
     );
   } else {
-    return const Icon(
+    return Icon(
       FontAwesomeIcons.computer,
       color: Colors.black,
-      size: 160,
+      size: screenWidth / 10,
     );
   }
 }
